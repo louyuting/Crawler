@@ -12,7 +12,8 @@ import utils.LinkQueue;
  * @since 2016-8-1
  */
 public class CrawlerClient {
-	@SuppressWarnings("unchecked")
+	
+	
 	public static void main(String[] args) {
 		
 		//定义uri种子
@@ -22,10 +23,10 @@ public class CrawlerClient {
 						  "http://www.ugirls.com/Video/",
 						  "http://www.ugirls.com/Rank/",};
 		//设置爬取网页的最大数量
-		Crawler crawler = new Crawler(10000);
+		Crawler crawler = new Crawler(200);
 		try {
 			//开始爬数据
-			System.out.println("开始爬数据");
+			System.out.println("-------------------------开始爬数据--------------------------");
 			crawler.crawling(seeds);
 		} catch (Exception e) {
 			e.printStackTrace();

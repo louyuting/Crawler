@@ -98,7 +98,7 @@ public class DirectoryUtil {
 			filepath.mkdirs();
 		
 		//添加文件名
-		sb.append(fileName).append(".log");
+		sb.append(fileName);
 		
 		return sb.toString();
 	}

@@ -60,7 +60,7 @@ public class DateUtil {
     }
     
     /**
-     * 格式化时间到毫秒
+     * 格式化时间到毫秒,返回字符串形式
      * @param date
      * @return 字符表示
      */
@@ -75,7 +75,7 @@ public class DateUtil {
      * @param d2
      * @return 返回两个日期间隔的毫秒数
      */
-    public static long getSecond(Date d1,Date d2)
+    public static long getDateOffsetSecond(Date d1,Date d2)
     {
         long a1 = d1.getTime();
         long a2 = d2.getTime();
@@ -88,7 +88,7 @@ public class DateUtil {
      * 根据秒数,格式化以**时**分**秒字符串形式返回
      * @return
      */
-    public static String getBeapartDate(long m)
+    public static String formatDateBySecond(long m)
     {
         String beapartdate="";
         int nDay = (int)m/(24*60*60);
@@ -120,7 +120,7 @@ public class DateUtil {
         if(begin==null || end==null) {
             return "输入时间有误";
         }
-        return getBeapartDate(getSecond(end,begin));
+        return formatDateBySecond(getDateOffsetSecond(end,begin));
     }
     
     //测试

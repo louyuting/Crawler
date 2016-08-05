@@ -9,7 +9,6 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.junit.Test;
 
 /**
  * 这个是根据uri或者response的实体来下载图片到本地的工具类
@@ -32,7 +31,7 @@ public class ImageDownloadUtil {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		HttpGet httpGet = new HttpGet(uri);
 		RequestConfig requestConfig = RequestConfig.custom().
-				setSocketTimeout(5000).setConnectTimeout(5000).build();
+				setSocketTimeout(20000).setConnectTimeout(20000).build();
 		httpGet.setConfig(requestConfig);
 		//执行请求
 		CloseableHttpResponse  response = httpclient.execute(httpGet);
@@ -48,7 +47,7 @@ public class ImageDownloadUtil {
 			os = new FileOutputStream(savePath);
 			//将输入流中的数据复制到输出流中
 			//缓冲数组
-			byte[] b = new byte[1024 * 1024*1];
+			byte[] b = new byte[1024 * 10];
 			int len;
 			while ((len = is.read(b)) != -1) {
 				os.write(b, 0, len);
@@ -90,18 +89,14 @@ public class ImageDownloadUtil {
 	/**测试
 	 * @throws Exception 
 	 */
-	@Test
-	public void test() throws Exception{
-		String uri = "http://img.youguoquan.com/uploads/activity/banner/e7f668fc55eafe5c3e84ec14abc25759.jpg";
-		//获取保存在本地的地址
-		String savePath = DirectoryUtil.getDirectoryByUri(uri);
-		boolean flag = downloadImg(uri, savePath);
-		
-		System.out.println(flag);
-	}
-	
-	
-	
-	
+//	@Test
+//	public void test() throws Exception{
+//		String uri = "http://img.youguoquan.com/uploads/activity/banner/e7f668fc55eafe5c3e84ec14abc25759.jpg";
+//		//获取保存在本地的地址
+//		String savePath = DirectoryUtil.getDirectoryByUri(uri);
+//		boolean flag = downloadImg(uri, savePath);
+//		
+//		System.out.println(flag);
+//	}
 	
 }

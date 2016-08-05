@@ -41,6 +41,8 @@ public class HttpRequestUtil {
 	//定义日志器
 	private static Logger logger = Logger.getLogger(HttpRequestUtil.class);
 	
+	public static final String ERROR = "_error";
+	
 	/**
 	 * 静态方法：根据URL发送GET请求
 	 * @param uri：待发送请求的链接地址
@@ -49,7 +51,12 @@ public class HttpRequestUtil {
 	 * @throws ClientProtocolException 
 	 * @return String 返回当前GET请求的response的body的字符串表示
 	 */
-	public static String get(String uri) throws IOException {
+	public static String get(String uri) {
+		
+		//对输入参数检验，如果为空返回自定义错误字符串
+		if(StringUtil.isEmpty(uri)){
+			return ERROR;
+		}
 		
 		//创建httpClient实例
 		//CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -79,7 +86,7 @@ public class HttpRequestUtil {
 		HttpGet httpGet = new HttpGet(uri);
 		
 		//ConnectTimeout是连接请求超时；SocketTimeout是响应超时时间
-		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000).build();
 		httpGet.setConfig(requestConfig);
 		
 		CloseableHttpResponse response = null;
@@ -88,14 +95,14 @@ public class HttpRequestUtil {
 			//执行发送请求，传入当前请求的参数httpGet和上下文环境localContext
 			response = httpclient.execute(httpGet, localContext);
 			
+			//响应为空
 			if(response == null)
-				return "error";
+				return ERROR;
 			//获取response的状态码并打印
 			logger.debug("当前请求返回的状态码是："+response.getStatusLine().getStatusCode());
-			
-			//如果请求的响应失败，返回error
+			//如果请求的响应状态码不是200，返回error
 			if(response.getStatusLine().getStatusCode() != 200)
-				return "error";
+				return ERROR;
 			
 			//获取所有的响应头并且打印出来
 			logger.debug("输出所有的响应头信息：");
@@ -108,7 +115,11 @@ public class HttpRequestUtil {
 			HttpEntity entity = response.getEntity();
 			//通过httpcore的工具类将响应体装换成string
 			body = EntityUtils.toString(entity, "UTF-8");
-			//logger.debug("输出响应体："+body);
+			logger.debug("输出响应体："+body);
+			if(StringUtil.isEmpty(body)){
+				return ERROR;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -125,7 +136,11 @@ public class HttpRequestUtil {
 		
 		//关闭httpclient
 		if(httpclient!=null){
-			httpclient.close();
+			try {
+				httpclient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			httpclient = null;
 		}
 		
@@ -143,8 +158,13 @@ public class HttpRequestUtil {
 	 * @throws IOException
 	 * @return String 返回当前GET请求的response的body的字符串表示
 	 */
-	public static String post(String uri, Map<String, String> data) throws IOException {
+	public static String post(String uri, Map<String, String> data) {
 		
+		//对输入参数检验，如果为空返回自定义错误字符串
+		if(StringUtil.isEmpty(uri)){
+			return ERROR;
+		}
+				
 		//创建httpClient实例
 		//CloseableHttpClient httpClient = HttpClients.createDefault();
 		//创建httpClient实例并且添加 Request拦截器，每发送一个请求就拦截计数：
@@ -182,24 +202,37 @@ public class HttpRequestUtil {
 		httpPost.setEntity(new UrlEncodedFormEntity(params, Charset.forName("UTF-8")));
 		
 		//为POST设置传输超时时间和请求超时时间
-		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000).build();
 		httpPost.setConfig(requestConfig);
 		
 		CloseableHttpResponse response = null;
 		String body = null;
 		try {
 			response = httpclient.execute(httpPost, localContext);
+			
+			//响应为空
+			if(response == null)
+				return ERROR;
+			//获取response的状态码并打印
 			logger.debug("当前请求返回的状态码是："+response.getStatusLine().getStatusCode());
+			//如果请求的响应状态码不是200，返回error
+			if(response.getStatusLine().getStatusCode() != 200)
+				return ERROR;
+			
 			//获取所有的响应头并且打印出来
 			Header[] headers = response.getAllHeaders();
 			for (Header header : headers) {
 				logger.debug(header.toString());
 			}
+			
 			//获取响应实体
 			HttpEntity entity = response.getEntity();
-			
 			body = EntityUtils.toString(entity, "UTF-8");
-			//logger.debug(body);
+			logger.debug(body);
+			if(StringUtil.isEmpty(body)){
+				return ERROR;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -213,10 +246,14 @@ public class HttpRequestUtil {
 			}
 		}
 			
-		//关闭httpClient
+		//关闭httpclient
 		if(httpclient!=null){
-			httpclient.close();
-			httpclient=null;
+			try {
+				httpclient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			httpclient = null;
 		}
 		//最后从context中获取 count 的值
 		//Object result = localContext.getAttribute("count");
@@ -237,12 +274,8 @@ public class HttpRequestUtil {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", "louyuting");
 		data.put("password", "733733");
-		try {
-			//HttpClient.get("http://baike.baidu.com/");
-			HttpRequestUtil.post("http://baike.baidu.com/", data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//HttpClient.get("http://baike.baidu.com/");
+		HttpRequestUtil.post("http://baike.baidu.com/", data);
 		PrintUtil.println("结束测试");
 	}
 }

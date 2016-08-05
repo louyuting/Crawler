@@ -30,7 +30,7 @@ public class JsoupUtil {
 		Set<String> uris = new HashSet<String>();
 		
 		//对传入的HTML进行一次校验
-		if(!StringUtil.checkStringNotNullAndEmpty(html)){
+		if(!StringUtil.isNotEmpty(html)){
 			return uris;
 		}
 		
@@ -47,7 +47,7 @@ public class JsoupUtil {
 			
 			String uriStr = uri.attr("abs:href");
 			//当uri不为空且取出开头结尾空格后不为空串则添加到集合中
-			if( StringUtil.checkStringNotNullAndEmpty(uriStr) )
+			if( StringUtil.isNotEmpty(uriStr) )
 				uris.add(uriStr);
 		}
 		
@@ -81,7 +81,7 @@ public class JsoupUtil {
 			}
 			
 			//检查uri是否为空
-			if(!StringUtil.checkStringNotNullAndEmpty(imgUri))
+			if(!StringUtil.isNotEmpty(imgUri))
 				continue;
 			
 			//jpg图片不是以http开头，退出当前迭代
@@ -114,7 +114,7 @@ public class JsoupUtil {
 		Set<String> imgUris = new HashSet<String>();
 		
 		//对传入的HTML进行一次校验
-		if(!StringUtil.checkStringNotNullAndEmpty(html)){
+		if(!StringUtil.isNotEmpty(html)){
 			return imgUris;
 		}
 		

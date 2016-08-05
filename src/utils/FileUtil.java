@@ -15,25 +15,27 @@ public class FileUtil {
     public static final String downTypes = "epub,txt,rar,zip";
     
     /**
-     * 根据目录string创建一个文件
+     * 根据目录String创建一个文件
      */
 	public static void createFileIfNotExist(String path){
-		File f = new File(path);
-		if(!f.exists() && !f.isDirectory())
+		File file = new File(path);
+		//file不存在且是一个文件而不是一个目录
+		if(!file.exists() && !file.isDirectory())
 			try {
-				f.createNewFile();
+				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 	}
 	
+	
 	/**
 	 * 多态 根据File创建文件
 	 */
-	public static boolean createFileIfNotExist(File f){
-		if(!f.exists()){
+	public static boolean createFileIfNotExist(File file){
+		if(!file.exists()){
 			try {
-				f.createNewFile();
+				file.createNewFile();
                 return true;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -44,26 +46,28 @@ public class FileUtil {
         }
 	}
 	
+	
 	/**
 	 * 根据path创建目录 
 	 */
-	public static void createFolderIfNotExist(String path){
-		File f = new File(path);
-		if(!f.exists())
-			f.mkdirs();
+	public static void createFolderIfNotExist(String dirPath){
+		File file = new File(dirPath);
+		if(!file.exists())
+			file.mkdirs();
 	}
+	
 	
 	/**
 	 * 根据File创建一个目录
 	 * @param f
 	 */
-	public static void createFolderIfNotExist(File f){
-		if(!f.exists())
-			f.mkdirs();
+	public static void createFolderIfNotExist(File file){
+		if(!file.exists())
+			file.mkdirs();
 	}
 	
 	/**
-     * function：将所得的InputStream，复制到指定目标的文件中
+     * function：将InputStream，复制到指定目标的文件中
      *
      * @param inSource
      * @param targetFile
@@ -78,6 +82,7 @@ public class FileUtil {
         boolean isOk = false;
         BufferedOutputStream bufOut = null;
         File parent = new File(targetFile.getParent());
+        
         if (!parent.exists()) {
             parent.mkdirs();
         }
@@ -88,6 +93,7 @@ public class FileUtil {
             // 缓冲数组
             byte[] b = new byte[1024 * 5];
             int len;
+            //从输入流中读出来，然后通过输出流写入到文件中
             while ((len = inSource.read(b)) != -1) {
                 bufOut.write(b, 0, len);
             }
@@ -411,20 +417,52 @@ public class FileUtil {
      * @param fileName 待写入的文件路径
      * @param text 带写入的文本
      */
-	public static void write(String fileName, String text) {
+	public static void write(String filePath, String text) {
+		BufferedOutputStream bufOutS = null;
 	    try {
-	        PrintWriter out = new PrintWriter( new File(fileName).getAbsoluteFile());
+	    	bufOutS = new BufferedOutputStream( new FileOutputStream(filePath));
+	    	byte[] textBytes = text.getBytes();
 		    try {
-		    	out.print(text);
+		    	bufOutS.write(textBytes, 0, textBytes.length);
 		    } finally {
-		        out.close();
+		    	bufOutS.close();
 		    }
 	    } catch(IOException e) {
 	    	throw new RuntimeException(e);
 	    }
 	}
 	
+	/**
+     * function:往文件里面写入一个字符串
+     * @param fileName 待写入的文件路径
+     * @param text 带写入的文本
+     */
+	public static void writeAppend(String filePath, String text) {
+		
+		BufferedOutputStream bufOutS = null;
+	    try {
+	    	//第二个参数true表示在已有文件后面追加
+	    	bufOutS = new BufferedOutputStream( new FileOutputStream(filePath, true));
+	    	byte[] textBytes = text.getBytes();
+		    try {
+		    	bufOutS.write(textBytes, 0, textBytes.length);
+		    } finally {
+		    	bufOutS.close();
+		    }
+	    } catch(IOException e) {
+	    	throw new RuntimeException(e);
+	    }
+	}
+	
+	
+	//测试write方法
+//	public static void main(String[] args) {
+//		for(int i=0; i<20;i++)
+//			writeAppend("E:/httpclient/logs/test.log", "qwertyuioiop\n");
+//	}
+	
 }
+
 
 
 

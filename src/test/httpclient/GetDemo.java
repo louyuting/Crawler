@@ -1,7 +1,6 @@
 package test.httpclient;
 
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -11,10 +10,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
-import utils.DirectoryUtil;
-import utils.ImageDownloadUtil;
 import utils.PrintUtil;
 import utils.UUIDUtil;
 
@@ -24,6 +20,7 @@ import utils.UUIDUtil;
  *
  */
 public class GetDemo {
+	@SuppressWarnings("unused")
 	private static String SAVE_PATH = "E:/images/" + UUIDUtil.getUUID()+".jpg";
 	
 	public static void main(String[] args) throws Exception, IOException {
@@ -45,6 +42,7 @@ public class GetDemo {
 			
 			PrintUtil.println("=====分割线===============================================");
 			//获取response的实体
+			@SuppressWarnings("unused")
 			HttpEntity entity = response.getEntity();
 			//获取实体的内容流,即一个输入流。用于读取里面的文件
 			//is = entity.getContent();

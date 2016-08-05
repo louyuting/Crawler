@@ -10,26 +10,21 @@ import java.util.Queue;
  * 因为set集合里面的元素是不能重复的，所以我们用set集合来记录已经访问过的uri
  * @author LL
  */
-@SuppressWarnings("unchecked")
 public class ImageLinkQueue{
 	//已访问的uri集合
-	@SuppressWarnings("rawtypes")
-	private static Set visitedUri = new HashSet();
+	private static Set<String> visitedUri = new HashSet<String>();
 	
 	//待访问的uri集合，我们爬取网站采用图的宽度遍历的思想，所以需要使用队列模拟
-	@SuppressWarnings("rawtypes")
-	private static Queue unVisitedUri = new PriorityQueue();
+	private static Queue<String> unVisitedUri = new PriorityQueue<String>();
 
 //==静态方法================================================================
 	//获取待访问的uri队列
-	@SuppressWarnings("rawtypes")
-	public static Queue getUnVisitedUri() {
+	public static Queue<String> getUnVisitedUri() {
 		return unVisitedUri;
 	}
 	
 	//获取已访问的uri集合
-	@SuppressWarnings("rawtypes")
-	public static Set getVisitedUri(){
+	public static Set<String> getVisitedUri(){
 		return visitedUri;
 	}
 	
@@ -60,7 +55,7 @@ public class ImageLinkQueue{
 	}
 	
 	//未访问的uri出队列
-	public static Object unVisitedUriDeQueue() {
+	public static String unVisitedUriDeQueue() {
 		//获取并删除队头
 		return unVisitedUri.poll();
 	}
