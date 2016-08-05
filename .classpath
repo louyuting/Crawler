@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/junit-4.9.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/fluent-hc-4.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-4.5.2.jar" sourcepath="D:/用户目录/Desktop/httpclient/httpcomponents-client-4.5.2-src.zip"/>
+	<classpathentry kind="lib" path="lib/httpclient-cache-4.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-win-4.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.4.4.jar" sourcepath="D:/Developer_software/MAVEN/repository/org/apache/httpcomponents/httpcore/4.4.4/httpcore-4.4.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/httpmime-4.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.4.5.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-ab-4.4.5.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-nio-4.4.5.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.9.2.jar" sourcepath="D:/用户目录/Desktop/httpclient/Jsoup/jsoup-1.9.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/D:/用户目录/Desktop/httpclient/Jsoup/jsoup-1.9.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
