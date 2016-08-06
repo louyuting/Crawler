@@ -7,7 +7,7 @@ import utils.ImageLinkQueue;
 import utils.LinkQueue;
 
 /**
- * 客户端主程序
+ * 这个是单线程爬虫的客户端
  * @author LL
  * @since 2016-8-1
  */
@@ -23,7 +23,7 @@ public class CrawlerClient {
 						  "http://www.ugirls.com/Video/",
 						  "http://www.ugirls.com/Rank/",};
 		//设置爬取网页的最大数量
-		Crawler crawler = new Crawler(200);
+		Crawler crawler = new Crawler(10000);
 		try {
 			//开始爬数据
 			System.out.println("-------------------------开始爬数据--------------------------");

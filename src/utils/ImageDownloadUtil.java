@@ -25,7 +25,7 @@ public class ImageDownloadUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean downloadImg(String uri, String savePath) throws Exception{
+	public static synchronized boolean downloadImg(String uri, String savePath) throws Exception{
 		
 		//模拟Http的Get请求
 		CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -77,7 +77,7 @@ public class ImageDownloadUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean downloadImg(String uri) throws Exception{
+	public static synchronized boolean downloadImg(String uri) throws Exception{
 		//获取保存在本地的地址
 		String savePath = DirectoryUtil.getDirectoryByUri(uri);
 		boolean flag = downloadImg(uri, savePath);

@@ -417,7 +417,7 @@ public class FileUtil {
      * @param fileName 待写入的文件路径
      * @param text 带写入的文本
      */
-	public static void write(String filePath, String text) {
+	public static synchronized void write(String filePath, String text) {
 		BufferedOutputStream bufOutS = null;
 	    try {
 	    	bufOutS = new BufferedOutputStream( new FileOutputStream(filePath));
@@ -437,7 +437,7 @@ public class FileUtil {
      * @param fileName 待写入的文件路径
      * @param text 带写入的文本
      */
-	public static void writeAppend(String filePath, String text) {
+	public static synchronized void writeAppend(String filePath, String text) {
 		
 		BufferedOutputStream bufOutS = null;
 	    try {
