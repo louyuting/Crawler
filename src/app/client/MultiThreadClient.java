@@ -3,8 +3,8 @@ package app.client;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import utils.CrawlerThread;
-import utils.LinkQueue;
+import app.crawler.CrawlerThread;
+import app.crawler.LinkQueue;
 
 /**
  * 多线程来爬取网站

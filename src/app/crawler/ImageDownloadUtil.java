@@ -1,4 +1,4 @@
-package utils;
+package app.crawler;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;

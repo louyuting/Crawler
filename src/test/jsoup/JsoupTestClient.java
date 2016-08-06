@@ -4,8 +4,8 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import utils.HttpRequestUtil;
-import utils.JsoupUtil;
+import app.crawler.HttpRequestUtil;
+import app.crawler.JsoupUtil;
 
 //
 public class JsoupTestClient {

@@ -2,9 +2,9 @@ package app.client;
 
 import java.util.Set;
 
-import utils.Crawler;
-import utils.ImageLinkQueue;
-import utils.LinkQueue;
+import app.crawler.Crawler;
+import app.crawler.ImageLinkQueue;
+import app.crawler.LinkQueue;
 
 /**
  * 这个是单线程爬虫的客户端

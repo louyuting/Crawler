@@ -1,4 +1,5 @@
-package utils;
+package app.crawler;
+
 
 public class CrawlerThread implements Runnable{
 	

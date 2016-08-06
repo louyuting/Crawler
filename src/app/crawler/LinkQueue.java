@@ -1,4 +1,4 @@
-package utils;
+package app.crawler;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;

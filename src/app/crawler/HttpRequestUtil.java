@@ -1,4 +1,4 @@
-package utils;
+package app.crawler;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -29,6 +29,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import utils.PrintUtil;
+import utils.StringUtil;
 
 
 /**

@@ -1,9 +1,13 @@
-package utils;
+package app.crawler;
 
 import java.util.Date;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+import utils.DateUtil;
+import utils.FileUtil;
+import utils.StringUtil;
 
 /**
  * 爬虫主类
