@@ -29,7 +29,12 @@ public class MultiThreadClient {
 						  "http://www.ugirls.com/Content/",
 						  "http://www.ugirls.com/Models/",
 						  "http://www.ugirls.com/Video/",
-						  "http://www.ugirls.com/Rank/",};
+						  "http://www.ugirls.com/Rank/",
+						  "http://www.ugirls.com/Index/Search/Magazine-48.html",
+						  "http://www.ugirls.com/Index/Search/Magazine-19.html",
+						  "http://www.ugirls.com/Index/Search/Magazine-59.html",
+						  "http://www.ugirls.com/Index/Search/Magazine-58.html",
+						  "http://www.ugirls.com/Index/Search/Magazine-53.html"};
 		
 		/** 多线程爬取网站时候要先进行种子设置好，然后多个线程才能开始爬取 */
 		initCrawlerSeeds(seeds);
@@ -37,11 +42,16 @@ public class MultiThreadClient {
 		//创建一个可根据需要创建新线程的线程池，但是在以前构造的线程可用时将重用它们。
 		ExecutorService executor = Executors.newCachedThreadPool();
 		
-		for(int i=0; i<5; i++){
-			executor.execute(new CrawlerThread(10000));
+		System.out.println("开始创建线程执行爬虫~~~~~~~~~~");
+		for(int i=0; i<10; i++){
+			executor.execute(new CrawlerThread(3000));
 		}
 		//启动一次顺序关闭，执行以前提交的任务，但不接受新任务。
 		executor.shutdown();
+		
+		
+		
+		
 	}
 	
 }

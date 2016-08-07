@@ -100,29 +100,30 @@ public class HttpRequestUtil {
 			if(response == null)
 				return ERROR;
 			//获取response的状态码并打印
-			logger.debug("当前请求返回的状态码是："+response.getStatusLine().getStatusCode());
+			//logger.debug("当前请求返回的状态码是："+response.getStatusLine().getStatusCode());
 			//如果请求的响应状态码不是200，返回error
 			if(response.getStatusLine().getStatusCode() != 200)
 				return ERROR;
 			
 			//获取所有的响应头并且打印出来
-			logger.debug("输出所有的响应头信息：");
+			/*logger.debug("输出所有的响应头信息：");
 			Header[] headers = response.getAllHeaders();
 			for (Header header : headers) {
 				logger.debug(header.toString());
-			}
+			}*/
 			
 			//获取响应实体
 			HttpEntity entity = response.getEntity();
 			//通过httpcore的工具类将响应体装换成string
 			body = EntityUtils.toString(entity, "UTF-8");
-			logger.debug("输出响应体："+body);
+			//logger.debug("输出响应体："+body);
 			if(StringUtil.isEmpty(body)){
 				return ERROR;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error(e.toString());
 		} finally {
 			//关闭response
 			if (response != null) {
@@ -131,6 +132,7 @@ public class HttpRequestUtil {
 					response.close();
 				} catch (IOException e) {
 					e.printStackTrace();
+					logger.error(e.toString());
 				}
 			}
 		}
@@ -141,6 +143,7 @@ public class HttpRequestUtil {
 				httpclient.close();
 			} catch (IOException e) {
 				e.printStackTrace();
+				logger.error(e.toString());
 			}
 			httpclient = null;
 		}

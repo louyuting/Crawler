@@ -9,6 +9,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.log4j.Logger;
 
 /**
  * 这个是根据uri或者response的实体来下载图片到本地的工具类
@@ -18,6 +19,8 @@ import org.apache.http.impl.client.HttpClients;
  */
 public class ImageDownloadUtil {
 	
+	//定义日志器
+	private static Logger logger = Logger.getLogger(ImageDownloadUtil.class);
 	/**
 	 * function 根据输入流
 	 * @param uri 图片的地址
@@ -56,6 +59,7 @@ public class ImageDownloadUtil {
 			os.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error(e.toString());
 		} finally {
 			if(is!=null){
 				is.close();

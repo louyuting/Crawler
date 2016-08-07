@@ -40,12 +40,12 @@ public class JsoupUtil {
 		Document document = Jsoup.parse(html, baseUri);
 		//获取所有<a/>标签中的href属性的值
 		Elements links = document.select("a[href]");
-		logger.debug("当前HTML中的<a/>标签中href总数是：" + links.size());
+		//logger.debug("当前HTML中的<a/>标签中href总数是：" + links.size());
 		
 		//迭代每个元素  <a/>
 		for (Element uri : links) {
 			//输出每个 uri 岛控制台
-			logger.debug("当前网页获取的uri："+uri.attr("abs:href"));
+			//logger.debug("当前网页获取的uri："+uri.attr("abs:href"));
 			
 			String uriStr = uri.attr("abs:href");
 			//当uri不为空且取出开头结尾空格后不为空串则添加到集合中
@@ -76,7 +76,7 @@ public class JsoupUtil {
 		
 		for (Element element : links) {
 			String imgUri = element.attr("abs:data-original");
-			logger.debug("当前图片的地址是：" + imgUri);
+			//logger.debug("当前图片的地址是：" + imgUri);
 			//筛选图片不是以.jpg或则.png或者.gif结尾，退出当前迭代,进入下一次迭代
 			if( !(imgUri.endsWith(".jpg") || imgUri.endsWith(".png") || imgUri.endsWith(".gif")) ){
 				continue;

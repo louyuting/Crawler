@@ -1,8 +1,12 @@
 package app.crawler;
 
+import java.util.concurrent.TimeUnit;
+
+import org.apache.log4j.Logger;
+
 
 public class CrawlerThread implements Runnable{
-	
+	private static Logger logger = Logger.getLogger(CrawlerThread.class);
 	/** 用来计数总的线程数 */
 	private static int threadCount = 1;
 	/** 给每个线程指定一个固定的ID  */
@@ -26,11 +30,18 @@ public class CrawlerThread implements Runnable{
 	 */
 	@Override
 	public void run() {
-		System.out.println("线程"+threadId+"开始执行爬虫~");
+		System.out.println("线程"+threadId+"开始执行爬虫~~~~~~");
 		//创建爬虫对象，并设置爬取网页的最大数量
 		Crawler crawler = new Crawler(MAX_URI_NUM);
+		//根据ID，让每个线程都睡眠一会儿
+		try {
+			TimeUnit.MILLISECONDS.sleep(10* threadId);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			logger.error(e.toString());
+		}
 		//爬取网页
-		boolean flag = crawler.crawling();
+		boolean flag = crawler.crawling(threadId);
 		
 		if(flag == true){
 			System.out.println("线程"+threadId+"爬虫执行完毕。");
@@ -38,6 +49,10 @@ public class CrawlerThread implements Runnable{
 			System.out.println("线程"+threadId+"爬虫执行出现异常。");
 		}
 		System.out.println("线程"+threadId+"结束执行爬虫~");
+		
+		System.out.println("已访问Uri数量："+LinkQueue.getVisitedUriNum());
+		System.out.println("未访问Uri数量："+LinkQueue.getUnVistiedUriNum());
+		
 	}//end of run
 	
 	
