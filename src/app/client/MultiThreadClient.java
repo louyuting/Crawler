@@ -49,9 +49,6 @@ public class MultiThreadClient {
 		//启动一次顺序关闭，执行以前提交的任务，但不接受新任务。
 		executor.shutdown();
 		
-		
-		
-		
 	}
 	
 }

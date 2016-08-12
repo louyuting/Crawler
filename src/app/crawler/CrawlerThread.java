@@ -17,7 +17,7 @@ public class CrawlerThread implements Runnable{
 	/** 构造器，默认当前线程爬取100个网页  */
 	public CrawlerThread(){
 		super();
-		MAX_URI_NUM = 100;
+		this.MAX_URI_NUM = 100;
 	}
 	/** 构造器，设置当前线程爬取网页数  */
 	public CrawlerThread(int maxUriNum){
@@ -35,6 +35,7 @@ public class CrawlerThread implements Runnable{
 		Crawler crawler = new Crawler(MAX_URI_NUM);
 		//根据ID，让每个线程都睡眠一会儿
 		try {
+			//当前线程启动后休眠一会儿，方便让其余线程启动
 			TimeUnit.MILLISECONDS.sleep(10* threadId);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
