@@ -44,8 +44,8 @@ public class JsoupUtil {
 		
 		//迭代每个元素  <a/>
 		for (Element uri : links) {
-			//输出每个 uri 岛控制台
-			//logger.debug("当前网页获取的uri："+uri.attr("abs:href"));
+			//输出每个 uri dao控制台
+			logger.debug("当前网页获取的uri："+uri.attr("abs:href"));
 			
 			String uriStr = uri.attr("abs:href");
 			//当uri不为空且取出开头结尾空格后不为空串则添加到集合中
