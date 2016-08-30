@@ -8,6 +8,7 @@ import java.util.Queue;
 /**
  * 用Set集合存储已访问链接；Queue队列存储未访问链接
  * 因为set集合里面的元素是不能重复的，所以我们用set集合来记录已经访问过的uri
+ * 同步：采用synchronized 对方法加锁
  * @author LL
  */
 public class LinkQueue{

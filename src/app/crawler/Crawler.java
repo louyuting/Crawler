@@ -63,6 +63,7 @@ public class Crawler {
 		//2. 循环爬取网页直至不满足循环条件：未访问的uri队列非空 且 已访问的uri数量小于限定值
 		System.out.println("开始循环爬取网页,爬的网页最多为：" + this.MAX_URI_NUM);
 		while((!LinkQueue.unVisitedUriIsEmpty()) && (LinkQueue.getVisitedUriNum() < this.MAX_URI_NUM)){
+			//当前线程的爬取网页数自加
 			pageCount++;
 			System.out.println(DateUtil.fmtDateToMillisecond(new Date())+": 这是爬取的第 "+pageCount+" 个网页");
 			
@@ -129,13 +130,14 @@ public class Crawler {
 	/**
 	 * function：抓取网页方法，该方法无参数，在爬虫之前就已经把种子设置好了，用于多线程调用
 	 * @param threadId 当前执行爬虫线程的ID
-	 * @throws Exception 
+	 * @throws Exception
 	 * @return boolean 当前网页执行完了就返回true，否则返回false
 	 */
 	public boolean crawling(int threadId) {
 		
 		//循环爬取网页直至不满足循环条件：未访问的uri队列非空 且 已访问的uri数量小于限定值
 		System.out.println("线程 "+threadId+" 开始循环爬取网页,爬的网页最多为：" + this.MAX_URI_NUM);
+		//未访问非空且已访问没有达到数量
 		while((!LinkQueue.unVisitedUriIsEmpty()) && (LinkQueue.getVisitedUriNum() < this.MAX_URI_NUM)){
 			//当前线程爬取网页数量自加
 			pageCount++;

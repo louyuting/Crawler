@@ -66,10 +66,14 @@ public class JsoupUtil {
 		
 		return parserHtmlGetUri(html, "");
 	}
+
 	
+//==================================================================================================
+//  与图片相关的
+//==================================================================================================
 	/**
 	 * 内部调用函数
-	 * @param imgUris
+	 * @param imgUris  这个参数传递的是引用传递？
 	 * @param links
 	 */
 	private static void checkImgUriLegal(Set<String> imgUris, Elements links){
@@ -83,7 +87,7 @@ public class JsoupUtil {
 			}
 			
 			//检查uri是否为空
-			if(!StringUtil.isNotEmpty(imgUri))
+			if(StringUtil.isEmpty(imgUri))
 				continue;
 			
 			//jpg图片不是以http开头，退出当前迭代
@@ -122,7 +126,7 @@ public class JsoupUtil {
 		
 		//获取文档对象模型
 		Document document = Jsoup.parse(html, baseUri);
-		//获取可能包含图片链接的标签的属性
+		/**获取可能包含图片链接的标签的属性*/
 		Elements links1 = document.select("img[data-original]");
 		Elements links2 = document.select("img[src]");
 		Elements links3 = document.select("img[data-src]");

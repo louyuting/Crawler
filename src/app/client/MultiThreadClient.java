@@ -44,7 +44,7 @@ public class MultiThreadClient {
 		
 		System.out.println("开始创建线程执行爬虫~~~~~~~~~~");
 		for(int i=0; i<10; i++){
-			executor.execute(new CrawlerThread(3000));
+			executor.execute(new CrawlerThread(10000));
 		}
 		//启动一次顺序关闭，执行以前提交的任务，但不接受新任务。
 		executor.shutdown();
