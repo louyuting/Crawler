@@ -1,17 +1,12 @@
 package test.jsoup;
 
-import java.util.Set;
-
 import org.apache.log4j.Logger;
-
-import app.crawler.HttpRequestUtil;
-import app.crawler.JsoupUtil;
 
 //
 public class JsoupTestClient {
 	private static Logger logger = Logger.getLogger(JsoupTestClient.class);
 	
-	public static void main(String[] args) throws Exception {
+	/*public static void main(String[] args) throws Exception {
 		String uri = "http://baike.baidu.com/";
 		String body = HttpRequestUtil.get(uri);
 		logger.debug(body);
@@ -24,7 +19,7 @@ public class JsoupTestClient {
 			logger.debug(uri_);
 		}
 		
-	}
+	}*/
 
 }
 

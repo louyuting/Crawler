@@ -11,8 +11,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import utils.PrintUtil;
-import utils.UUIDUtil;
+import com.crawler.utils.PrintUtil;
+import com.crawler.utils.UUIDUtil;
 
 /**
  * 测试

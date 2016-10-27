@@ -28,7 +28,7 @@ import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
-import utils.PrintUtil;
+import com.crawler.utils.PrintUtil;
 
 
 /**
